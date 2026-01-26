@@ -512,23 +512,23 @@ async function handleFormSubmit(e) {
     return;
   }
 
-  const url = 'https://script.google.com/macros/s/AKfycbzCeA9LErNMv38-q3qhV8boV6Klk7LUJ8ksrU8P7nSaoKTBow0j76o0iqteRJZLYDRUcg/exec';
+  const url = 'https://script.google.com/macros/s/AKfycbxeldBhiZ-e19knI4oeFD5LkQJsVtjDO3aCxqZYiJK450krpFWp3qZLqK_EMcxRKInpUg/exec';
 
   try {
     const response = await fetch(
       `${url}?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`,
-      {
-        method: 'GET',
-        cache: 'no-store'
-      }
+      { method: 'GET', cache: 'no-store' }
     );
 
-    if (response.ok) {
-      document.getElementById('bookingForm').style.display = 'none';
-      document.getElementById('successMessage').style.display = 'block';
-    } else {
-      throw new Error('Request failed');
+    const text = await response.text();
+    console.log('SCRIPT RESPONSE:', text);
+
+    if (text.trim() !== 'OK') {
+      throw new Error(text);
     }
+
+    document.getElementById('bookingForm').style.display = 'none';
+    document.getElementById('successMessage').style.display = 'block';
 
   } catch (err) {
     console.error(err);
