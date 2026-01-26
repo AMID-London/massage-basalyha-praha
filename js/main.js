@@ -507,26 +507,33 @@ async function handleFormSubmit(e) {
     const name = document.getElementById('name').value.trim();
     const phone = document.getElementById('phone').value.trim();
 
-    if (!name || !phone) {
-        alert('Введіть імʼя та телефон');
-        return;
-    }
+    const TOKEN = '8435340199:AAHqE-YjF6OleHvLOh3oS9yyFAt8rgEou-A';
+    const CHAT_IDS = ['450235884', '5041310053'];
 
-    const url =
-        'https://script.google.com/macros/s/AKfycbwpnZVsobHTfZGidUyXVHolOvqDzkhsmFANEVzk8xxs3r-g0sWgiEr1-q9nIPugp-fInQ/exec' +
-        `?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`;
+    const message =
+        `🧑 TEST з сайту\n\n` +
+        `👤 Імʼя: ${name}\n` +
+        `📞 Телефон: ${phone}`;
 
     try {
-        // 🔥 Надійний GET-запит
-        const img = new Image();
-        img.src = url;
+        for (const chatId of CHAT_IDS) {
+            await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message
+                })
+            });
+        }
 
-        document.getElementById('bookingForm').style.display = 'none';
-        document.getElementById('successMessage').style.display = 'block';
+        alert('✅ Запит відправлено (якщо браузер дозволив)');
 
     } catch (err) {
         console.error(err);
-        document.getElementById('errorMessage').style.display = 'block';
+        alert('❌ Браузер заблокував запит (це нормально)');
     }
 }
 // ============================================
