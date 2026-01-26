@@ -515,8 +515,17 @@ async function handleFormSubmit(e) {
     const url = 'https://script.google.com/macros/s/AKfycbzCeA9LErNMv38-q3qhV8boV6Klk7LUJ8ksrU8P7nSaoKTBow0j76o0iqteRJZLYDRUcg/exec';
 
     try {
-        await fetch(`${url}?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`);
+       const response = await fetch(
+  `${url}?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`,
+  { method: 'GET' }
+);
 
+const text = await response.text();
+console.log('SCRIPT RESPONSE:', text);
+
+if (!response.ok || text !== 'OK') {
+  throw new Error('Google Script error');
+}
         document.getElementById('bookingForm').style.display = 'none';
         document.getElementById('successMessage').style.display = 'block';
 
