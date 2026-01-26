@@ -502,37 +502,38 @@ function setupEventListeners() {
 // Form Handling
 // ============================================
 async function handleFormSubmit(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    const name = document.getElementById('name').value.trim();
-    const phone = document.getElementById('phone').value.trim();
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
 
-    if (!name || !phone) {
-        alert('Введіть імʼя та телефон');
-        return;
+  if (!name || !phone) {
+    alert('Введіть імʼя та телефон');
+    return;
+  }
+
+  const url = 'https://script.google.com/macros/s/AKfycbzCeA9LErNMv38-q3qhV8boV6Klk7LUJ8ksrU8P7nSaoKTBow0j76o0iqteRJZLYDRUcg/exec';
+
+  try {
+    const response = await fetch(
+      `${url}?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`,
+      {
+        method: 'GET',
+        cache: 'no-store'
+      }
+    );
+
+    if (response.ok) {
+      document.getElementById('bookingForm').style.display = 'none';
+      document.getElementById('successMessage').style.display = 'block';
+    } else {
+      throw new Error('Request failed');
     }
 
-    const url = 'https://script.google.com/macros/s/AKfycbzCeA9LErNMv38-q3qhV8boV6Klk7LUJ8ksrU8P7nSaoKTBow0j76o0iqteRJZLYDRUcg/exec';
-
-    try {
-       const response = await fetch(
-  `${url}?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`,
-  { method: 'GET' }
-);
-
-const text = await response.text();
-console.log('SCRIPT RESPONSE:', text);
-
-if (!response.ok || text !== 'OK') {
-  throw new Error('Google Script error');
-}
-        document.getElementById('bookingForm').style.display = 'none';
-        document.getElementById('successMessage').style.display = 'block';
-
-    } catch (err) {
-        console.error(err);
-        document.getElementById('errorMessage').style.display = 'block';
-    }
+  } catch (err) {
+    console.error(err);
+    document.getElementById('errorMessage').style.display = 'block';
+  }
 }
 // ============================================
 // Scroll Effects
