@@ -504,43 +504,32 @@ function setupEventListeners() {
 async function handleFormSubmit(e) {
   e.preventDefault();
 
-  const nameInput = document.getElementById('name');
-  const phoneInput = document.getElementById('phone');
-
-  const name = nameInput.value.trim();
-  const phone = phoneInput.value.trim();
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
 
   if (!name || !phone) {
     alert('Введіть імʼя та телефон');
     return;
   }
 
-  // ❗ ВАЖЛИВО: тут має бути РОБОЧИЙ /exec
-  const SCRIPT_URL =
-    'https://script.google.com/macros/s/AKfycbxn3nArhGiEcaGtv9baqyA7YXtXOHHvtM92RSQYlb0Xdsu23g_luwEUcifefPIVt6IYhg/exec';
-
   try {
     const response = await fetch(
-      `${SCRIPT_URL}?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`,
+      `https://plain-wildflower-5c33.dimamycak000.workers.dev?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`,
       {
         method: 'GET',
         cache: 'no-store'
       }
     );
 
-    const result = await response.text();
+    const text = await response.text();
 
-    if (result.trim() !== 'OK') {
-      throw new Error('Script returned: ' + result);
+    if (text.trim() !== 'OK') {
+      throw new Error(text);
     }
 
-    // успіх
+    // success
     document.getElementById('bookingForm').style.display = 'none';
     document.getElementById('successMessage').style.display = 'block';
-
-    // очистка полів (не впливає на дизайн)
-    nameInput.value = '';
-    phoneInput.value = '';
 
   } catch (error) {
     console.error(error);
