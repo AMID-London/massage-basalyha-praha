@@ -495,7 +495,7 @@ function setupEventListeners() {
         if (e.target === modal) closeModal();
     });
 
-    // Form submission
+    // 🔴 КЛЮЧОВИЙ РЯДОК
     bookingForm?.addEventListener('submit', handleFormSubmit);
 }
 // ============================================
