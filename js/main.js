@@ -175,7 +175,7 @@ const content = {
             trust: 'Masér se zdravotnickým vzděláním'
         },
       about: {
-    title: 'O terapeutovi',
+  title: 'O masážním terapeutovi',
     text: 'Igor je profesionalni maser s lekarskym vzdelanim a vice nez 7 lety praxe. Ma oficialni certifikaty a hluboke znalosti anatomie a fyziologie, coz mu umoznuje pracovat s telem kazdeho klienta bezpecne a efektivne. Ke kazdemu klientovi pristupuje individualne, peclive nasloucha potrebam a voli optimalni techniku pro dosazeni nejlepsich vysledku - ulevu od bolesti, uvolneni napeti nebo regeneraci po zatezi. Jako odbornik se neustale zdokonaluje a jako clovek je otevreny, pratelsky a vzdy pripraven pomoci. Vyhledavaji ho lide, kteri si ceni profesionality, duvery a pece o zdravi.'
 },
         services: {
