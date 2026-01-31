@@ -504,34 +504,46 @@ function setupEventListeners() {
 async function handleFormSubmit(e) {
   e.preventDefault();
 
-  const name = document.getElementById('name').value.trim();
-  const phone = document.getElementById('phone').value.trim();
+  const nameInput = document.getElementById('name');
+  const phoneInput = document.getElementById('phone');
+
+  const name = nameInput.value.trim();
+  const phone = phoneInput.value.trim();
 
   if (!name || !phone) {
     alert('Введіть імʼя та телефон');
     return;
   }
 
-  const url = 'https://script.google.com/macros/s/AKfycbwd334R8s_mF8zqUpOiK_XssYPUv7XggYAp7plZhgIoLKYI6YzlFWua7v48rkO1fLEOXA/exec';
+  // ❗ ВАЖЛИВО: тут має бути РОБОЧИЙ /exec
+  const SCRIPT_URL =
+    'https://script.google.com/macros/s/AKfycbxn3nArhGiEcaGtv9baqyA7YXtXOHHvtM92RSQYlb0Xdsu23g_luwEUcifefPIVt6IYhg/exec';
 
   try {
     const response = await fetch(
-      `${url}?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`,
-      { method: 'GET', cache: 'no-store' }
+      `${SCRIPT_URL}?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`,
+      {
+        method: 'GET',
+        cache: 'no-store'
+      }
     );
 
-    const text = await response.text();
-    console.log('SCRIPT RESPONSE:', text);
+    const result = await response.text();
 
-    if (text.trim() !== 'OK') {
-      throw new Error(text);
+    if (result.trim() !== 'OK') {
+      throw new Error('Script returned: ' + result);
     }
 
+    // успіх
     document.getElementById('bookingForm').style.display = 'none';
     document.getElementById('successMessage').style.display = 'block';
 
-  } catch (err) {
-    console.error(err);
+    // очистка полів (не впливає на дизайн)
+    nameInput.value = '';
+    phoneInput.value = '';
+
+  } catch (error) {
+    console.error(error);
     document.getElementById('errorMessage').style.display = 'block';
   }
 }
