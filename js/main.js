@@ -176,7 +176,7 @@ const content = {
         },
       about: {
   title: 'O masážním terapeutovi',
-    text: 'Igor je profesionalni maser s lekarskym vzdelanim a vice nez 7 lety praxe. Ma oficialni certifikaty a hluboke znalosti anatomie a fyziologie, coz mu umoznuje pracovat s telem kazdeho klienta bezpecne a efektivne. Ke kazdemu klientovi pristupuje individualne, peclive nasloucha potrebam a voli optimalni techniku pro dosazeni nejlepsich vysledku - ulevu od bolesti, uvolneni napeti nebo regeneraci po zatezi. Jako odbornik se neustale zdokonaluje a jako clovek je otevreny, pratelsky a vzdy pripraven pomoci. Vyhledavaji ho lide, kteri si ceni profesionality, duvery a pece o zdravi.'
+  text: 'Igor je profesionální masér s lékařským vzděláním a více než 7 lety praxe. Má oficiální certifikáty a hluboké znalosti anatomie a fyziologie, což mu umožňuje pracovat s tělem každého klienta bezpečně a efektivně. Ke každému klientovi přistupuje individuálně, pečlivě naslouchá potřebám a volí optimální techniku pro dosažení nejlepších výsledků – úlevu od bolesti, uvolnění napětí nebo regeneraci po zátěži. Jako odborník se neustále zdokonaluje a jako člověk je otevřený, přátelský a vždy připraven pomoci. Vyhledávají ho lidé, kteří si cení profesionality, důvěry a péče o zdraví.'
 },
         services: {
             title: 'Druhy masáží',
