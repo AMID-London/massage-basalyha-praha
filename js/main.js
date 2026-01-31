@@ -529,9 +529,9 @@ async function handleFormSubmit(e) {
 
     const text = await response.text();
 
-    if (text.trim() !== 'OK') {
-      throw new Error(text);
-    }
+    if (!response.ok) {
+       throw new Error(text);
+     }
 
     // success
     document.getElementById('bookingForm').style.display = 'none';
