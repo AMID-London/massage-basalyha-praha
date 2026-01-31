@@ -512,7 +512,7 @@ async function handleFormSubmit(e) {
     return;
   }
 
-  const url = 'https://script.google.com/macros/s/AKfycbxeldBhiZ-e19knI4oeFD5LkQJsVtjDO3aCxqZYiJK450krpFWp3qZLqK_EMcxRKInpUg/exec';
+  const url = 'https://script.google.com/macros/s/AKfycbwd334R8s_mF8zqUpOiK_XssYPUv7XggYAp7plZhgIoLKYI6YzlFWua7v48rkO1fLEOXA/exec';
 
   try {
     const response = await fetch(
