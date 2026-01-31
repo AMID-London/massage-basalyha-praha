@@ -445,7 +445,13 @@ function renderFAQ() {
         });
     });
 }
+function closeModal() {
+    const modal = document.getElementById('bookingModal');
+    if (!modal) return;
 
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+}
 // ============================================
 // Event Listeners
 // ============================================
